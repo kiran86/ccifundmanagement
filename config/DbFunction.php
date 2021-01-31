@@ -37,22 +37,37 @@ class DbFunction{
 		return $stmt;
 	}
 
-	function get_est_details($id, $cat) {
+	function get_est_details($est_id, $cat) {
 		$db = Database::getInstance();
 		$mysqli = $db->getConnection();
 		switch ($cat) {
 			case "cci":
 				$table = "cci_details";
+				$id = "cci";
+				break;
 			case "cwc":
 				$table = "cwc_details";
+				$id = "cwc";
+				break;
 			case "jjb":
 				$table = "jjb_details";
+				$id = "jjb";
+				break;
 			case "dcpu":
 				$table = "dcpu_details";
+				$id = "jjb";
+				break;
+			case "other":
+				$table = "other_est_details";
+				$id = "est";
+				break;
 		}
-		$query = "SELECT * FROM cci_details WHERE cci_id=" . $cci_id . "";
-		$stmt= $mysqli->query($query);
-		return $stmt;
+		$query = "SELECT * FROM " . $table . " WHERE ".$id."_id=?";
+		$stmt= $mysqli->prepare($query);
+		$stmt->bind_param('s', $id);
+		$check = $stmt->execute();
+		echo "<script>alert('".$check."')</script>";
+		return $stmt->fetch();
 	}
 
 	function get_job_status($job_id) {

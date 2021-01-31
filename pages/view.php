@@ -88,15 +88,15 @@ if(isset($_GET['del']))
                                         $est_id=$res->est_id;
                                         $est_cat=$res->category;
                                         $est_details=$obj->get_est_details($est_id, $est_cat);
-                                        $res1=$cci_details->fetch_object();
-                                        $job_id=$res->job_status_id;
-                                        $job_st = $obj->get_job_status($job_id);
-                                        $res2=$job_st->fetch_object();
+                                        $res1=$cci_details->fetch_array(MYSQLI_NUM);
+                                        //$job_id=$res->job_status_id;
+                                        //$job_st = $obj->get_job_status($job_id);
+                                        //$res2=$job_st->fetch_object();
                                     ?>
                                     <tr class="odd gradeX">
                                         <td><?php echo $sn?></td>
-                                        <td><?php echo htmlentities(strtoupper($res1->district));?></td>
-                                        <td><?php echo htmlentities(strtoupper($res1->cci_name));?></td>
+                                        <td><?php echo htmlentities(strtoupper($res1[0]));?></td>
+                                        <td><?php echo htmlentities(strtoupper($res1[1]));?></td>
                                         <td><?php echo htmlentities(strtoupper($res->fin_year));?></td>
 	                                    <td><?php echo htmlentities($res->work_desc);?></td>
 	                                    <td><?php echo htmlentities(strtoupper($res->prop_amnt));?></td>
@@ -109,7 +109,7 @@ if(isset($_GET['del']))
                                         <td><?php echo htmlentities(strtoupper($res->final_trench_dt));?></td>
                                         <td><?php echo htmlentities(strtoupper($res->final_trench_amnt));?></td>
                                         <td><?php echo htmlentities(strtoupper($res->uc_date));?></td>
-                                        <td><?php echo htmlentities(strtoupper($res2->job_status));?></td>
+                                        <td><?php echo htmlentities(strtoupper($res->job_status_id));?></td>
                                         <td>&nbsp;&nbsp;<a href="edit-std.php?id=<?php echo htmlentities($res->id);?>">
 	                                    <p class="fa fa-edit"></p></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <a href="view.php?del=<?php echo htmlentities($res->job_id); ?>">
