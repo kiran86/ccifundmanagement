@@ -85,8 +85,9 @@ if(isset($_GET['del']))
                                     <?php 
                                     $sn=1;
                                     while($res=$rs->fetch_object()){
-                                        $cci_id=$res->cci_id;
-                                        $cci_details=$obj->get_cci_details($cci_id);
+                                        $est_id=$res->est_id;
+                                        $est_cat=$res->category;
+                                        $est_details=$obj->get_est_details($est_id, $est_cat);
                                         $res1=$cci_details->fetch_object();
                                         $job_id=$res->job_status_id;
                                         $job_st = $obj->get_job_status($job_id);

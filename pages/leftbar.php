@@ -7,11 +7,14 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.html">CCI Fund Management</a>
+				<a class="navbar-brand" href="index.html">Establishment Fund Management</a>
 			</div>
 			<div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="view.php"><i class="fa fa-bar-chart-o fa-fw"></i>Job Listing<span class="fa arrow"></span></a>
+                        </li>
                         <li>
                             <a href="?"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
@@ -40,10 +43,6 @@
                    <li>
                             <a href="register.php"><i class="fa fa-bar-chart-o fa-fw"></i>Regsiter<span class="fa arrow"></span></a>
                   </li>     
-                                            
-                   <li>
-                            <a href="view.php"><i class="fa fa-bar-chart-o fa-fw"></i>View Students<span class="fa arrow"></span></a>
-                  </li>      
                    <li>
                             <a href="session.php"><i class="fa fa-bar-chart-o fa-fw"></i>Session<span class="fa arrow"></span></a>
                   </li>

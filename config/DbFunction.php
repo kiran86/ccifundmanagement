@@ -32,14 +32,24 @@ class DbFunction{
 	function show_jobs() {
 		$db = Database::getInstance();
 		$mysqli = $db->getConnection();
-		$query = "SELECT * FROM cci_fund_details";
+		$query = "SELECT * FROM est_fund_details";
 		$stmt= $mysqli->query($query);
 		return $stmt;
 	}
 
-	function get_cci_details($cci_id) {
+	function get_est_details($id, $cat) {
 		$db = Database::getInstance();
 		$mysqli = $db->getConnection();
+		switch ($cat) {
+			case "cci":
+				$table = "cci_details";
+			case "cwc":
+				$table = "cwc_details";
+			case "jjb":
+				$table = "jjb_details";
+			case "dcpu":
+				$table = "dcpu_details";
+		}
 		$query = "SELECT * FROM cci_details WHERE cci_id=" . $cci_id . "";
 		$stmt= $mysqli->query($query);
 		return $stmt;
@@ -48,7 +58,7 @@ class DbFunction{
 	function get_job_status($job_id) {
 		$db = Database::getInstance();
 		$mysqli = $db->getConnection();
-		$query = "SELECT * FROM cci_job_status WHERE job_id=" . $job_id . "";
+		$query = "SELECT * FROM job_status WHERE job_id=" . $job_id . "";
 		$stmt= $mysqli->query($query);
 		return $stmt;
 	}

@@ -5,7 +5,7 @@ class Database {
 	private $_host = "localhost";
 	private $_username = "root";
 	private $_password = "mastermind";
-	private $_database = "ccifundmanagement";
+	private $_database = "estfundmanagement";
 	/*
 	Get an instance of the Database
 	@return Instance
