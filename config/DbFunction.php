@@ -14,7 +14,6 @@ class DbFunction{
 			if(false===$stmt){
 				trigger_error("Error in query: " . mysqli_connect_error(),E_USER_ERROR);
 			} else {
-				echo "<script>alert('Success!')</script>";
 				$stmt->bind_param('ss',$loginid,$password);
 				$stmt->execute();
 				$stmt->bind_result($loginid,$password);
@@ -24,8 +23,7 @@ class DbFunction{
 					echo "<script>alert('Invalid Details')</script>";
 					header('location:login.php');
 				} else {
-					//header('location:add-course.php');
-					echo "<script>alert('Success!')</script>";
+					header('location:add-course.php');
 				}
 			}
 		}

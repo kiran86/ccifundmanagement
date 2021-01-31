@@ -16,7 +16,8 @@
             "request": "launch",
             "program": "${file}",
             "cwd": "${fileDirname}",
-            "port": 9000
+            "port": 9000,
+            "runtimeExecutable": "C:\\Bitnami\\wampstack-8.0.1-0\\php\\php.exe"
         }
     ]
 }

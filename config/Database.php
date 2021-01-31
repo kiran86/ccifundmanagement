@@ -1,10 +1,10 @@
 <?php
 class Database {
 	private $_connection;
-	private static $_instance = null; //The single instance
+	private static $_instance; //The single instance
 	private $_host = "localhost";
 	private $_username = "root";
-	private $_password = "";
+	private $_password = "mastermind";
 	private $_database = "ccifundmanagement";
 	/*
 	Get an instance of the Database
@@ -12,16 +12,13 @@ class Database {
 	*/
 	public static function getInstance():self {
 		if(!self::$_instance) { // If no instance then make one
-			echo "<script>alert('No Database Instance1!')</script>";
-			self::$_instance = new Database();
+			self::$_instance = new self();
 		}
-		echo "<script>alert('Database instace created!')</script>";
 		return self::$_instance;
 	}
 	// Constructor
 	public function __construct() {
 		$this->_connection = new mysqli($this->_host, $this->_username,	$this->_password, $this->_database);
-	
 		// Error handling
 		if(mysqli_connect_error()) {
 			trigger_error("Failed to conencto to MySQL: " . mysqli_connect_error(), E_USER_ERROR);
