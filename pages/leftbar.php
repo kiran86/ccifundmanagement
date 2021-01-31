@@ -7,7 +7,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.html">Student Management System</a>
+				<a class="navbar-brand" href="index.html">CCI Fund Management</a>
 			</div>
 			<div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
@@ -36,9 +36,7 @@
                                     <a href="view-subject.php">View</a>
                                 </li>
                             </ul>
-                           
                         </li>
-                        
                    <li>
                             <a href="register.php"><i class="fa fa-bar-chart-o fa-fw"></i>Regsiter<span class="fa arrow"></span></a>
                   </li>     

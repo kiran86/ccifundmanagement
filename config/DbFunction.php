@@ -23,10 +23,34 @@ class DbFunction{
 					echo "<script>alert('Invalid Details')</script>";
 					header('location:login.php');
 				} else {
-					header('location:add-course.php');
+					header('location:view.php');
 				}
 			}
 		}
+	}
+
+	function show_jobs() {
+		$db = Database::getInstance();
+		$mysqli = $db->getConnection();
+		$query = "SELECT * FROM cci_fund_details";
+		$stmt= $mysqli->query($query);
+		return $stmt;
+	}
+
+	function get_cci_details($cci_id) {
+		$db = Database::getInstance();
+		$mysqli = $db->getConnection();
+		$query = "SELECT * FROM cci_details WHERE cci_id=" . $cci_id . "";
+		$stmt= $mysqli->query($query);
+		return $stmt;
+	}
+
+	function get_job_status($job_id) {
+		$db = Database::getInstance();
+		$mysqli = $db->getConnection();
+		$query = "SELECT * FROM cci_job_status WHERE job_id=" . $job_id . "";
+		$stmt= $mysqli->query($query);
+		return $stmt;
 	}
 
 	function create_course($cshort,$cfull,$cdate){
