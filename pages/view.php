@@ -24,7 +24,7 @@ if(isset($_GET['del']))
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>View Students</title>
+    <title>View Work Listing</title>
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
     <link href="../bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
@@ -55,7 +55,7 @@ if(isset($_GET['del']))
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            View Job Listing
+                            View Work Listing
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">

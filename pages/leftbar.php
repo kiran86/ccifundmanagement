@@ -13,19 +13,19 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="view.php"><i class="fa fa-bar-chart-o fa-fw"></i>Job Listing<span class="fa arrow"></span></a>
+                            <a href="view.php"><i class="fa fa-bar-chart-o fa-fw"></i>Work Listing<span class="fa arrow"></span></a>
                         </li>
-                        <li>
+                        <!--<li>
                             <a href="?"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                        </li>
+                        </li>-->
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Course<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Works<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="add-course.php">Add Course</a>
+                                    <a href="add-work.php">Add New Work</a>
                                 </li>
                                 <li>
-                                    <a href="view-course.php">View</a>
+                                    <a href="view.php">View Works</a>
                                 </li>
                             </ul>
                         </li>

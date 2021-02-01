@@ -75,6 +75,14 @@ class DbFunction{
 		return $stmt;
 	}
 
+	function get_districts() {
+		$db = Database::getInstance();
+		$mysqli = $db->getConnection();
+		$query = "SELECT district FROM dcpu_details ORDER BY district ASC";
+		$stmt= $mysqli->query($query);
+		return $stmt;
+	}
+
 	function create_course($cshort,$cfull,$cdate){
 		
 				if($cshort==""){
