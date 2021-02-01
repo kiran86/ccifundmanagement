@@ -136,6 +136,8 @@ if(isset($_POST['submit'])){
 		var category = $("#catg").find(":selected").text();
 		if(district != "SELECT" && category != "SELECT")
 			$("#estname").attr("disabled", false);
+		else
+			$("#estname").attr("disabled", true);
 	}
 	</script>
 </form>
