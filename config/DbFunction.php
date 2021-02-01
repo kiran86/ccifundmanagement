@@ -62,12 +62,9 @@ class DbFunction{
 				$id = "est";
 				break;
 		}
-		$query = "SELECT * FROM " . $table . " WHERE ".$id."_id=?";
-		$stmt= $mysqli->prepare($query);
-		$stmt->bind_param('s', $id);
-		$check = $stmt->execute();
-		echo "<script>alert('".$check."')</script>";
-		return $stmt->fetch();
+		$query = "SELECT * FROM " . $table . " WHERE ".$id."_id='{$est_id}'";
+		$stmt= $mysqli->query($query);
+		return $stmt;
 	}
 
 	function get_job_status($job_id) {
