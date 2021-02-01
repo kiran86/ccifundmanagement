@@ -67,10 +67,10 @@ class DbFunction{
 		return $stmt;
 	}
 
-	function get_job_status($job_id) {
+	function get_work_status($wrk_id) {
 		$db = Database::getInstance();
 		$mysqli = $db->getConnection();
-		$query = "SELECT * FROM job_status WHERE job_id=" . $job_id . "";
+		$query = "SELECT * FROM work_status WHERE work_id='" . $wrk_id . "'";
 		$stmt= $mysqli->query($query);
 		return $stmt;
 	}

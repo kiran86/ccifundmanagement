@@ -89,9 +89,9 @@ if(isset($_GET['del']))
                                         $est_cat=$res->category;
                                         $est_details=$obj->get_est_details($est_id, $est_cat);
                                         $res1=$est_details->fetch_array(MYSQLI_NUM);
-                                        //$job_id=$res->job_status_id;
-                                        //$job_st = $obj->get_job_status($job_id);
-                                        //$res2=$job_st->fetch_object();
+                                        $work_id=$res->work_status_id;
+                                        $work_st = $obj->get_work_status($work_id);
+                                        $res2=$work_st->fetch_object();
                                     ?>
                                     <tr class="odd gradeX">
                                         <td><?php echo $sn?></td>
@@ -102,14 +102,14 @@ if(isset($_GET['del']))
 	                                    <td><?php echo htmlentities(strtoupper($res->prop_amnt));?></td>
                                         <td><?php echo htmlentities(strtoupper($res->dcrt_file_no));?></td>
                                         <td><?php echo htmlentities(strtoupper($res->dept_file_no));?></td>
-                                        <td><?php echo htmlentities(strtoupper($res->aafs_date));?></td>
+                                        <td><?php echo htmlentities(date_format(date_create($res->aafs_date), "d-m-Y"));?></td>
                                         <td><?php echo htmlentities(strtoupper($res->aafs_amnt));?></td>
-                                        <td><?php echo htmlentities(strtoupper($res->first_trench_dt));?></td>
+                                        <td><?php echo htmlentities(date_format(date_create($res->first_trench_dt), "d-m-Y"));?></td>
                                         <td><?php echo htmlentities(strtoupper($res->first_trench_amnt));?></td>
-                                        <td><?php echo htmlentities(strtoupper($res->final_trench_dt));?></td>
+                                        <td><?php echo htmlentities(date_format(date_create($res->final_trench_dt), "d-m-Y"));?></td>
                                         <td><?php echo htmlentities(strtoupper($res->final_trench_amnt));?></td>
-                                        <td><?php echo htmlentities(strtoupper($res->uc_date));?></td>
-                                        <td><?php echo htmlentities(strtoupper($res->job_status_id));?></td>
+                                        <td><?php echo htmlentities(date_format(date_create($res->uc_date), "d-m-Y"));?></td>
+                                        <td><?php echo htmlentities(strtoupper($res2->work_status));?></td>
                                         <td>&nbsp;&nbsp;<a href="edit-std.php?id=<?php echo htmlentities($res->job_id);?>">
 	                                    <p class="fa fa-edit"></p></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <a href="view.php?del=<?php echo htmlentities($res->job_id); ?>">
