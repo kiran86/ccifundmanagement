@@ -134,11 +134,26 @@ if(isset($_POST['submit'])){
 	function getEstList() {
 		var district = $("#district").find(":selected").text();
 		var category = $("#catg").find(":selected").text();
-		if(district != "SELECT" && category != "SELECT")
+		if(district != "SELECT" && category != "SELECT") {
 			$("#estname").attr("disabled", false);
+			listEst(district, category);
+		}
 		else
 			$("#estname").attr("disabled", true);
 	}
+	
+	function listEst(dist, cat) {
+		$.ajax({
+			type: "POST",
+			url: "works.php",
+			data:{d:dist, c:cat},
+			success: function(data){
+			// alert(data);
+				$("#estname").html(data);
+			}
+		});
+	}
+	
 	</script>
 </form>
 </body>

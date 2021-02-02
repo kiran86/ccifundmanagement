@@ -10,6 +10,6 @@ try
 }
 catch(PDOException $e)
 {
-    $e->getMessage();
+    echo "<script>alert('".$e->getMessage()."')</script>";
 }
 ?>
