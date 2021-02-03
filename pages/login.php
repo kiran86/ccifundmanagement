@@ -18,7 +18,7 @@ if(isset($_POST['submit'])){
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Establishment Fund Management : Login </title>
+    <title>Infrastructure Development : Login </title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -41,7 +41,7 @@ if(isset($_POST['submit'])){
 </head>
 
 <body>
- <h2 align="center">Establishment Fund Management</h2>
+ <h2 align="center">Infrastructure Development</h2>
     <div class="container">
         <br><br><br><br>
             <div class="col-md-4 col-md-offset-4">

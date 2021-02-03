@@ -7,7 +7,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="../index.php">Establishment Fund Management</a>
+				<a class="navbar-brand" href="../index.php">Infrastructure Development</a>
 			</div>
 			<div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
