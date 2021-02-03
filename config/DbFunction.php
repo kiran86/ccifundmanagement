@@ -83,6 +83,14 @@ class DbFunction{
 		return $stmt;
 	}
 
+	function get_wrkstatuses() {
+		$db = Database::getInstance();
+		$mysqli = $db->getConnection();
+		$query = "SELECT * FROM work_status ORDER BY work_id ASC";
+		$stmt= $mysqli->query($query);
+		return $stmt;
+	}
+
 	function create_course($cshort,$cfull,$cdate){
 		
 				if($cshort==""){
@@ -241,42 +249,32 @@ function showStudents1($id){
 	
 }	
 
-function register($cshort,$cfull,$fname,$mname,$lname,$gender,$gname,$ocp,$income,$category,$ph,
-                  $nation,$mobno,$email,$country,$state,$city,$padd,$cadd,$board1,$board2,$roll1,$roll2,
-				   $pyear1,$pyear2,$sub1,$sub2,$marks1,$marks2,$fmarks1,$fmarks2,$session){
- 			          
- 			        $db = Database::getInstance();
-		           	$mysqli = $db->getConnection();
-		           	
-		           //	echo $session;exit;
-   $query = "INSERT INTO `registration` (`course`, `subject`, `fname`, `mname`, `lname`, `gender`, `gname`, `ocp`,
-                     `income`, `category`, `pchal`, `nationality`, `mobno`, `emailid`, `country`, `state`, `dist`, 
-					 `padd`, `cadd`, `board`, `board1`,`roll`,`roll1`,`pyear`,`yop1`,`sub`,`sub1`,`marks`,`marks1`,
-					 `fmarks`,`fmarks1`,`session`,regno) 
-                   VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-			        $reg=rand();
-			        $stmt= $mysqli->prepare($query);
-			        if(false===$stmt){
-			
-			     	trigger_error("Error in query: " . mysqli_connect_error(),E_USER_ERROR);
-			    }
-			
-			    else{
-			
-			$stmt->bind_param('sssssssssssssssssssssssssssssssss',
-		         	$cshort,$cfull,$fname,$mname,$lname,$gender,$gname,$ocp,$income,$category,$ph,$nation,$mobno,
-					$email,$country,$state,$city,$padd,$cadd,$board1,$board2,$roll1,$roll2,$pyear1,$pyear2,
-					$sub1,$sub2,$marks1,$marks2,$fmarks1,$fmarks2,$session,$reg);
-			$stmt->execute();
-		   	echo "<script>alert('Successfully Registered , your registration number is $reg')</script>";
+function create_work($district, $category, $estid, $finyear, $wrkdesc, $propamnt, $dcrtfno, $deptfno, $aafsdate, 
+					$aafsamnt, $ftrdate, $ftramnt, $fntrdate, $fntramnt, $ucdate, $wrkstatus){
+		
+	$db = Database::getInstance();
+	$mysqli = $db->getConnection();
+	date_default_timezone_set('Asia/Kolkata');
+	//	echo $session;exit;
+   	$query = "INSERT INTO `est_fund_details` (`job_id`, `est_id`, `category`, `fin_year`, `work_desc`, `prop_amnt`, `dcrt_file_no`,
+   			`dept_file_no`, `aafs_date`, `aafs_amnt`, `first_trench_dt`, `first_trench_amnt`, `final_trench_dt`, `final_trench_amnt`,
+			`uc_date`, `work_status_id`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	$jobid="job_" . date("YmdHis");
+	
+	$stmt= $mysqli->prepare($query);
+	if(false===$stmt){
+		trigger_error("Error in query: " . mysqli_connect_error(),E_USER_ERROR);
+	} else {
+		$stmt->bind_param('ssssssssssssssss', 
+			$jobid, $estid, $category, $finyear, $wrkdesc, $propamnt, $dcrtfno, $deptfno, $aafsdate, 
+			$aafsamnt, $ftrdate, $ftramnt, $fntrdate, $fntramnt, $ucdate, $wrkstatus);
+		echo "<script>alert('$query')</script>";
+			//$stmt->execute();
+		   	//echo "<script>alert('Successfully Registered , your registration number is $reg')</script>";
 		 	//header('location:login.php');
 				
-		  }
-				
-
-
-       }
-
+	}
+}
 
 function edit_course($cshort,$cfull,$udate,$id){
 

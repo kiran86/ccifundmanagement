@@ -3,13 +3,16 @@ session_start ();
 include('../config/DbFunction.php');
 $obj=new DbFunction();
 $rs_dist = $obj->get_districts();
+$rs_sts = $obj->get_wrkstatuses();
 
 if (!(isset( $_SESSION ['login']))) {
 	header ( 'location:../index.php' );
 }
 
 if(isset($_POST['submit'])){
-	$obj->create_course($_POST['course-short'],$_POST['course-full'],$_POST['cdate']);
+	$obj->create_work($_POST['district'],$_POST['category'], $_POST['estname'], $_POST['finyear'], $_POST['wrkdesc'],
+					$_POST['propamnt'], $_POST['dcrtno'], $_POST['deptno'], $_POST['aafsdate'], $_POST['aafsamnt'], $_POST['ftrdate'],
+					$_POST['ftramnt'], $_POST['fntrdate'], $_POST['fntramnt'], $_POST['ucdate'], $_POST['wrkstatus']);
 }
 ?>
 <!DOCTYPE html>
@@ -37,6 +40,9 @@ if(isset($_POST['submit'])){
 
 <!-- Custom Fonts -->
 <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<!-- JQuery UI -->
+<link href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
 </head>
 
 <body>
@@ -73,7 +79,7 @@ if(isset($_POST['submit'])){
 											<?php }?>
 										</select>
 									</div>		
-								</div>		
+								</div>
 								<br><br>
 								<div class="form-group">
 									<div class="col-lg-4">
@@ -103,10 +109,151 @@ if(isset($_POST['submit'])){
 	 							</div>
 								<br><br>
 								<div class="form-group">
+									<div class="col-lg-4">
+										<label>Financial Year: <span id="" style="font-size:11px;color:red">*</span></label>
+									</div>
+									<div class="col-lg-6">
+										<select class="form-control" name="finyear" id="finyear" required="required">
+											<option VALUE="">SELECT</option>
+										</select>
+									</div>
+	 							</div>
+								<br><br>
+								<div class="form-group">
+									<div class="col-lg-4">
+										<label>Work Description: <span id="" style="font-size:11px;color:red">*</span></label>
+									</div>
+									<div class="col-lg-6">
+										<textarea class="form-control" rows="3" name="wrkdesc" id="wrkdesc"></textarea>
+									</div>
+	 							</div>
+								<br><br>
+								<br><br>
+								<div class="form-group">
+									<div class="col-lg-4">
+										<label>Proposed Amount: <span id="" style="font-size:11px;color:red">*</span></label>
+									</div>
+									<div class="col-lg-6">
+										<div class="form-group input-group">
+											<span class="input-group-addon">₹</span>
+											<input name="propamnt" id="propamnt" class="form-control">
+											<span class="input-group-addon">.00</span>
+										</div>
+									</div>
+	 							</div>
+								<br><br>
+								<div class="form-group">
+									<div class="col-lg-4">
+										<label>DCRT File No.: <span id="" style="font-size:11px;color:red">*</span></label>
+									</div>
+									<div class="col-lg-6">
+										<input class="form-control" name="dcrtno" id="dcrtno" required>
+									</div>
+	 							</div>
+								<br><br>
+								<div class="form-group">
+									<div class="col-lg-4">
+										<label>Dept. File No.: <span id="" style="font-size:11px;color:red">*</span></label>
+									</div>
+									<div class="col-lg-6">
+										<input class="form-control" name="deptno" id="deptno" required>
+									</div>
+	 							</div>
+								<br><br>
+								<div class="form-group">
+									<div class="col-lg-4">
+										<label>AAFS Date: <span id="" style="font-size:11px;color:red">*</span></label>
+									</div>
+									<div class="col-lg-6">
+										<input class="form-control" name="aafsdate" id="aafsdate">
+									</div>
+								 </div>
+								<br><br>
+								<div class="form-group">
+									<div class="col-lg-4">
+										<label>AAFS Amount: <span id="" style="font-size:11px;color:red">*</span></label>
+									</div>
+									<div class="col-lg-6">
+										<div class="form-group input-group">
+											<span class="input-group-addon">₹</span>
+											<input name="aafsamnt" id="aafsamnt" class="form-control">
+											<span class="input-group-addon">.00</span>
+										</div>
+									</div>
+								 </div>
+								<br><br>
+								<div class="form-group">
+									<div class="col-lg-4">
+										<label>First Trench Date: <span id="" style="font-size:11px;color:red">*</span></label>
+									</div>
+									<div class="col-lg-6">
+										<input class="form-control" name="ftrdate" id="ftrdate">
+									</div>
+								 </div>								 
+								<br><br>
+								<div class="form-group">
+									<div class="col-lg-4">
+										<label>First Trench Amount: <span id="" style="font-size:11px;color:red">*</span></label>
+									</div>
+									<div class="col-lg-6">
+										<div class="form-group input-group">
+											<span class="input-group-addon">₹</span>
+											<input name="ftramnt" id="ftramnt" class="form-control">
+											<span class="input-group-addon">.00</span>
+										</div>
+									</div>
+	 							</div>
+								<br><br>
+								<div class="form-group">
+									<div class="col-lg-4">
+										<label>Final Trench Date: <span id="" style="font-size:11px;color:red">*</span></label>
+									</div>
+									<div class="col-lg-6">
+										<input class="form-control" name="fntrdate" id="fntrdate">
+									</div>
+								 </div>
+								<br><br>
+								<div class="form-group">
+									<div class="col-lg-4">
+										<label>Final Trench Amount: <span id="" style="font-size:11px;color:red">*</span></label>
+									</div>
+									<div class="col-lg-6">
+										<div class="form-group input-group">
+											<span class="input-group-addon">₹</span>
+											<input name="fntramnt" id="fntramnt" class="form-control">
+											<span class="input-group-addon">.00</span>
+										</div>
+									</div>
+	 							</div>
+								<br><br>
+								<div class="form-group">
+									<div class="col-lg-4">
+										<label>UC Date: <span id="" style="font-size:11px;color:red">*</span></label>
+									</div>
+									<div class="col-lg-6">
+										<input class="form-control" name="ucdate" id="ucdate">
+									</div>
+								 </div>
+								<br><br>
+								<div class="form-group">
+									<div class="col-lg-4">
+										<label>Work Status: <span id="" style="font-size:11px;color:red">*</span></label>
+									</div>
+									<div class="col-lg-6">
+										<select class="form-control" name="wrkstatus" id="wrkstatus" required="required">
+											<option VALUE="">SELECT</option>
+											<?php while($res=$rs_sts->fetch_object()){?>
+                        					<option VALUE="<?php echo htmlentities($res->work_id);?>"><?php echo htmlentities($res->work_status);?></option>
+											<?php }?>
+										</select>
+									</div>
+	 							</div>
+								<br><br>
+								<div class="form-group">
 									<div class="col-lg-4">				
 									</div>
 									<div class="col-lg-6"><br><br>
-										<input type="submit" class="btn btn-primary" name="submit" value="Create Course"></button>
+										<input type="submit" class="btn btn-primary" name="submit" value="Create Work"></button>
 									</div>
 								</div>		
 							</div>
@@ -129,6 +276,9 @@ if(isset($_POST['submit'])){
 
 	<!-- Custom Theme JavaScript -->
 	<script src="../dist/js/sb-admin-2.js" type="text/javascript"></script>
+
+	<!-- JQuery UI -->
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 	<script>
 	function getEstList() {
@@ -153,7 +303,35 @@ if(isset($_POST['submit'])){
 			}
 		});
 	}
-	
+	$(window).load(function () {
+		var date = new Date();
+		var thisY = date.getFullYear();
+		var thisM = date.getMonth();
+		if(thisM > 3)
+			thisY++;
+		var startY = thisY - 5;
+		while(startY <= thisY)
+		{
+			var finY = ""+startY+"-"+(++startY);
+			$("#finyear").append(
+				$('<option>', {
+					value:finY,
+					text:finY
+				}));
+		}
+	});
+	$(document).ready(function() {
+		$("#aafsdate").datepicker();
+	});
+	$(document).ready(function() {
+		$("#ftrdate").datepicker();
+	});
+	$(document).ready(function() {
+		$("#fntrdate").datepicker();
+	});
+	$(document).ready(function() {
+		$("#ucdate").datepicker();
+	});
 	</script>
 </form>
 </body>
