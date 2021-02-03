@@ -91,6 +91,14 @@ class DbFunction{
 		return $stmt;
 	}
 
+	function get_job_details($job_id) {
+		$db = Database::getInstance();
+		$mysqli = $db->getConnection();
+		$sql = "SELECT * FROM est_fund_details WHERE job_id = '".$job_id."'";
+		$stmt = $mysqli->query($sql);
+		return $stmt;
+	}
+
 	function create_course($cshort,$cfull,$cdate){
 		
 				if($cshort==""){

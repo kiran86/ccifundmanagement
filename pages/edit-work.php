@@ -5,8 +5,11 @@ if (!(isset( $_SESSION ['login']))) {
 }
 include('../config/DbFunction.php');
 $obj=new DbFunction();
+$job_id = $_GET["jid"];
+$rs_job = $obj->get_job_details($job_id);
 $rs_dist = $obj->get_districts();
 $rs_sts = $obj->get_wrkstatuses();
+
 
 if(isset($_POST['submit'])){
 	$obj->create_work($_POST['district'],$_POST['category'], $_POST['estname'], $_POST['finyear'], $_POST['wrkdesc'],

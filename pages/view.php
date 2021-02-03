@@ -109,7 +109,7 @@ if(isset($_GET['del']))
                                         <td><?php echo htmlentities(strtoupper($res->final_trench_amnt));?></td>
                                         <td><?php echo htmlentities(date_format(date_create($res->uc_date), "d-m-Y"));?></td>
                                         <td><?php echo htmlentities(strtoupper($res2->work_status));?></td>
-                                        <td>&nbsp;&nbsp;<a href="edit-work.php?id=<?php echo htmlentities($res->job_id);?>">
+                                        <td>&nbsp;&nbsp;<a href="edit-work.php?jid=<?php echo htmlentities($res->job_id);?>">
 	                                    <p class="fa fa-edit"></p></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <a href="view.php?del=<?php echo htmlentities($res->job_id); ?>">
 	                                    <p class="fa fa-times-circle"></p>
