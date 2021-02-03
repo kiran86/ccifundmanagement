@@ -1,8 +1,8 @@
 <?php
 $DB_host = "localhost";
-$DB_user = "root";
-$DB_pass = "mastermind";
-$DB_name = "estfundmanagement";
+$DB_user = "id16072692_dcrt";
+$DB_pass = "Mastermind_2021";
+$DB_name = "id16072692_estfundmanagement";
 try
 {
     $DB_con = new PDO("mysql:host={$DB_host};dbname={$DB_name}",$DB_user,$DB_pass);

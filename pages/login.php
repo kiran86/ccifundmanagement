@@ -41,7 +41,7 @@ if(isset($_POST['submit'])){
 </head>
 
 <body>
- <h2 align="center">CCI Fund Management System</h2>
+ <h2 align="center">Establishment Fund Management</h2>
     <div class="container">
         <br><br><br><br>
             <div class="col-md-4 col-md-offset-4">

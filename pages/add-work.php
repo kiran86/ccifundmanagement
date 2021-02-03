@@ -72,7 +72,7 @@ if(isset($_POST['submit'])){
 					 					<label>Select District: <span id="" style="font-size:11px;color:red">*</span></label>
 									</div>
 									<div class="col-lg-6">
-										<select class="form-control" name="district" id="district" onchange="getEstList()" required="required" >
+										<select class="form-control" name="district" id="district" onchange="getEstList()" required >
 											<option VALUE="">SELECT</option>
 											<?php while($res=$rs_dist->fetch_object()){?>
                         					<option VALUE="<?php echo htmlentities($res->district);?>"><?php echo htmlentities($res->district)?></option>
@@ -86,7 +86,7 @@ if(isset($_POST['submit'])){
 										<label>Category: <span id="" style="font-size:11px;color:red">*</span></label>
 									</div>
 									<div class="col-lg-6">
-											<select class="form-control" name="catagory" id="catg" onchange="getEstList()" required="required" >
+											<select class="form-control" name="category" id="category" onchange="getEstList()" required >
 											<option VALUE="">SELECT</option>
 											<option VALUE="cci">CCI</option>
 											<option VALUE="cwc">CWC</option>
@@ -102,7 +102,7 @@ if(isset($_POST['submit'])){
 										<label>Establishment Name: <span id="" style="font-size:11px;color:red">*</span></label>
 									</div>
 									<div class="col-lg-6">
-										<select class="form-control" name="estname" id="estname" required="required" disabled>
+										<select class="form-control" name="estname" id="estname" required disabled>
 											<option VALUE="">SELECT</option>
 										</select>
 									</div>
@@ -113,7 +113,7 @@ if(isset($_POST['submit'])){
 										<label>Financial Year: <span id="" style="font-size:11px;color:red">*</span></label>
 									</div>
 									<div class="col-lg-6">
-										<select class="form-control" name="finyear" id="finyear" required="required">
+										<select class="form-control" name="finyear" id="finyear" required>
 											<option VALUE="">SELECT</option>
 										</select>
 									</div>
@@ -124,7 +124,7 @@ if(isset($_POST['submit'])){
 										<label>Work Description: <span id="" style="font-size:11px;color:red">*</span></label>
 									</div>
 									<div class="col-lg-6">
-										<textarea class="form-control" rows="3" name="wrkdesc" id="wrkdesc"></textarea>
+										<textarea class="form-control" rows="3" name="wrkdesc" id="wrkdesc" required></textarea>
 									</div>
 	 							</div>
 								<br><br>
@@ -136,7 +136,7 @@ if(isset($_POST['submit'])){
 									<div class="col-lg-6">
 										<div class="form-group input-group">
 											<span class="input-group-addon">₹</span>
-											<input name="propamnt" id="propamnt" class="form-control">
+											<input name="propamnt" id="propamnt" class="form-control" required>
 											<span class="input-group-addon">.00</span>
 										</div>
 									</div>
@@ -156,7 +156,7 @@ if(isset($_POST['submit'])){
 										<label>Dept. File No.: <span id="" style="font-size:11px;color:red">*</span></label>
 									</div>
 									<div class="col-lg-6">
-										<input class="form-control" name="deptno" id="deptno" required>
+										<input class="form-control" name="deptno" id="deptno" >
 									</div>
 	 							</div>
 								<br><br>
@@ -283,13 +283,15 @@ if(isset($_POST['submit'])){
 	<script>
 	function getEstList() {
 		var district = $("#district").find(":selected").text();
-		var category = $("#catg").find(":selected").text();
+		var category = $("#category").find(":selected").text();
 		if(district != "SELECT" && category != "SELECT") {
 			$("#estname").attr("disabled", false);
 			listEst(district, category);
 		}
-		else
+		else {
 			$("#estname").attr("disabled", true);
+			$("#estname").attr("required", true);
+		}
 	}
 	
 	function listEst(dist, cat) {

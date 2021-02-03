@@ -259,20 +259,37 @@ function create_work($district, $category, $estid, $finyear, $wrkdesc, $propamnt
    	$query = "INSERT INTO `est_fund_details` (`job_id`, `est_id`, `category`, `fin_year`, `work_desc`, `prop_amnt`, `dcrt_file_no`,
    			`dept_file_no`, `aafs_date`, `aafs_amnt`, `first_trench_dt`, `first_trench_amnt`, `final_trench_dt`, `final_trench_amnt`,
 			`uc_date`, `work_status_id`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-	$jobid="job_" . date("YmdHis");
+	$jobid="job_" . date("YmdHi");
 	
+	if($aafsdate == "")
+		$aafsdate = NULL;
+	else
+		$aafsdate = date('Y-m-d', strtotime($aafsdate));
+	if($ftrdate == "")
+		$ftrdate = NULL;
+	else
+		$ftrdate = date('Y-m-d', strtotime($ftrdate));
+	if($fntrdate == "")
+		$fntrdate = NULL;
+	else
+		$fntrdate = date('Y-m-d', strtotime($fntrdate));
+	if($ucdate == "")
+		$ucdate = NULL;
+	else
+		$ucdate = date('Y-m-d', strtotime($ucdate));
+
 	$stmt= $mysqli->prepare($query);
 	if(false===$stmt){
 		trigger_error("Error in query: " . mysqli_connect_error(),E_USER_ERROR);
 	} else {
-		$stmt->bind_param('ssssssssssssssss', 
+		$check = $stmt->bind_param('sssssdsssdsdsdss', 
 			$jobid, $estid, $category, $finyear, $wrkdesc, $propamnt, $dcrtfno, $deptfno, $aafsdate, 
 			$aafsamnt, $ftrdate, $ftramnt, $fntrdate, $fntramnt, $ucdate, $wrkstatus);
-		echo "<script>alert('$query')</script>";
-			//$stmt->execute();
-		   	//echo "<script>alert('Successfully Registered , your registration number is $reg')</script>";
-		 	//header('location:login.php');
-				
+		$stmt->execute();
+		if($stmt->affected_rows > 0)
+			echo "<script>alert('Successfully Created New Work!')</script>";
+		else
+			echo "<script>alert('ERROR: Work creation failed with ".addslashes($stmt->error)."')</script>";
 	}
 }
 
@@ -386,8 +403,4 @@ function del_std($id){
 }
 
 }
-
 ?>
-
-
-

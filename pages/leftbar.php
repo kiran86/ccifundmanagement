@@ -7,7 +7,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.html">Establishment Fund Management</a>
+				<a class="navbar-brand" href="../index.php">Establishment Fund Management</a>
 			</div>
 			<div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
@@ -29,6 +29,7 @@
                                 </li>
                             </ul>
                         </li>
+                        <!--
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Subject<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -45,7 +46,7 @@
                   </li>     
                    <li>
                             <a href="session.php"><i class="fa fa-bar-chart-o fa-fw"></i>Session<span class="fa arrow"></span></a>
-                  </li>
+                  </li>-->
                    <li>
                             <a href="logout.php"><i class="fa fa-bar-chart-o fa-fw"></i>Logout<span class="fa arrow"></span></a>
                   </li>
