@@ -109,7 +109,7 @@ if(isset($_POST['submit'])){
 										<label>Establishment Name: <span id="" style="font-size:11px;color:red">*</span></label>
 									</div>
 									<div class="col-lg-6">
-										<select class="form-control" name="estname" id="estname" required disabled>
+										<select class="form-control" name="estname" id="estname" required >
 											<option VALUE="">SELECT</option>
 										</select>
 									</div>
@@ -131,7 +131,7 @@ if(isset($_POST['submit'])){
 										<label>Work Description: <span id="" style="font-size:11px;color:red">*</span></label>
 									</div>
 									<div class="col-lg-6">
-										<textarea class="form-control" rows="3" name="wrkdesc" id="wrkdesc" required></textarea>
+										<textarea class="form-control" rows="3" name="wrkdesc" id="wrkdesc" required><?php echo htmlentities($res_job->work_desc);?></textarea>
 									</div>
 	 							</div>
 								<br><br>
@@ -143,7 +143,7 @@ if(isset($_POST['submit'])){
 									<div class="col-lg-6">
 										<div class="form-group input-group">
 											<span class="input-group-addon">₹</span>
-											<input name="propamnt" id="propamnt" class="form-control" required>
+											<input name="propamnt" id="propamnt" class="form-control" required value="<?php echo htmlentities($res_job->prop_amnt);?>" >
 											<span class="input-group-addon">.00</span>
 										</div>
 									</div>
@@ -154,7 +154,7 @@ if(isset($_POST['submit'])){
 										<label>DCRT File No.: <span id="" style="font-size:11px;color:red">*</span></label>
 									</div>
 									<div class="col-lg-6">
-										<input class="form-control" name="dcrtno" id="dcrtno" required>
+										<input class="form-control" name="dcrtno" id="dcrtno" required value="<?php echo htmlentities($res_job->dcrt_file_no);?>">
 									</div>
 	 							</div>
 								<br><br>
@@ -163,7 +163,7 @@ if(isset($_POST['submit'])){
 										<label>Dept. File No.: <span id="" style="font-size:11px;color:red">*</span></label>
 									</div>
 									<div class="col-lg-6">
-										<input class="form-control" name="deptno" id="deptno" >
+										<input class="form-control" name="deptno" id="deptno" value="<?php echo htmlentities($res_job->dept_file_no);?>" >
 									</div>
 	 							</div>
 								<br><br>
@@ -172,7 +172,7 @@ if(isset($_POST['submit'])){
 										<label>AAFS Date: <span id="" style="font-size:11px;color:red">*</span></label>
 									</div>
 									<div class="col-lg-6">
-										<input class="form-control" name="aafsdate" id="aafsdate">
+										<input class="form-control" name="aafsdate" id="aafsdate" value="<?php echo htmlentities($res_job->aafs_date);?>">
 									</div>
 								 </div>
 								<br><br>
@@ -183,7 +183,7 @@ if(isset($_POST['submit'])){
 									<div class="col-lg-6">
 										<div class="form-group input-group">
 											<span class="input-group-addon">₹</span>
-											<input name="aafsamnt" id="aafsamnt" class="form-control">
+											<input name="aafsamnt" id="aafsamnt" class="form-control" value="<?php echo htmlentities($res_job->aafs_amnt);?>" >
 											<span class="input-group-addon">.00</span>
 										</div>
 									</div>
@@ -194,7 +194,7 @@ if(isset($_POST['submit'])){
 										<label>First Trench Date: <span id="" style="font-size:11px;color:red">*</span></label>
 									</div>
 									<div class="col-lg-6">
-										<input class="form-control" name="ftrdate" id="ftrdate">
+										<input class="form-control" name="ftrdate" id="ftrdate" value="<?php echo htmlentities($res_job->first_trench_dt);?>" >
 									</div>
 								 </div>								 
 								<br><br>
@@ -205,7 +205,7 @@ if(isset($_POST['submit'])){
 									<div class="col-lg-6">
 										<div class="form-group input-group">
 											<span class="input-group-addon">₹</span>
-											<input name="ftramnt" id="ftramnt" class="form-control">
+											<input name="ftramnt" id="ftramnt" class="form-control" value="<?php echo htmlentities($res_job->first_trench_amnt);?>" >
 											<span class="input-group-addon">.00</span>
 										</div>
 									</div>
@@ -216,7 +216,7 @@ if(isset($_POST['submit'])){
 										<label>Final Trench Date: <span id="" style="font-size:11px;color:red">*</span></label>
 									</div>
 									<div class="col-lg-6">
-										<input class="form-control" name="fntrdate" id="fntrdate">
+										<input class="form-control" name="fntrdate" id="fntrdate" value="<?php echo htmlentities($res_job->final_trench_dt);?>">
 									</div>
 								 </div>
 								<br><br>
@@ -227,7 +227,7 @@ if(isset($_POST['submit'])){
 									<div class="col-lg-6">
 										<div class="form-group input-group">
 											<span class="input-group-addon">₹</span>
-											<input name="fntramnt" id="fntramnt" class="form-control">
+											<input name="fntramnt" id="fntramnt" class="form-control" value="<?php echo htmlentities($res_job->final_trench_amnt);?>">
 											<span class="input-group-addon">.00</span>
 										</div>
 									</div>
@@ -238,7 +238,7 @@ if(isset($_POST['submit'])){
 										<label>UC Date: <span id="" style="font-size:11px;color:red">*</span></label>
 									</div>
 									<div class="col-lg-6">
-										<input class="form-control" name="ucdate" id="ucdate">
+										<input class="form-control" name="ucdate" id="ucdate" value="<?php echo htmlentities($res_job->uc_date);?>">
 									</div>
 								 </div>
 								<br><br>
@@ -250,7 +250,7 @@ if(isset($_POST['submit'])){
 										<select class="form-control" name="wrkstatus" id="wrkstatus" required="required">
 											<option VALUE="">SELECT</option>
 											<?php while($res=$rs_sts->fetch_object()){?>
-                        					<option VALUE="<?php echo htmlentities($res->work_id);?>"><?php echo htmlentities($res->work_status);?></option>
+                        					<option VALUE="<?php echo htmlentities($res->work_id);?>" <?php if($res->work_id == $res_job->work_status_id) echo "selected"?>><?php echo htmlentities($res->work_status);?></option>
 											<?php }?>
 										</select>
 									</div>
@@ -288,12 +288,12 @@ if(isset($_POST['submit'])){
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 	<script>
-	function getEstList() {
+	function getEstList(est="") {
 		var district = $("#district").find(":selected").text();
 		var category = $("#category").find(":selected").text();
 		if(district != "SELECT" && category != "SELECT") {
 			$("#estname").attr("disabled", false); {
-				listEst(district, category);
+				listEst(district, category, est);
 				$("#estname").attr("required", true);
 			}
 		}
@@ -301,9 +301,54 @@ if(isset($_POST['submit'])){
 			$("#estname").attr("disabled", true);
 		}
 	}
+	
+	function listEst(dist, cat, est) {
+		$.ajax({
+			type: "POST",
+			url: "works.php",
+			data:{d:dist, c:cat, e:est},
+			success: function(data){
+			// alert(data);
+				$("#estname").html(data);
+			}
+		});
+	}
+
 	$(document).ready(function() {
 		$("#category").val("<?php echo htmlentities($res_job->category);?>");
-		getEstList();
+		getEstList("<?php echo htmlentities($res_e[2]);?>");
+	});
+
+	$(window).load(function () {
+		var date = new Date();
+		var thisY = date.getFullYear();
+		var thisM = date.getMonth();
+		if(thisM > 3)
+			thisY++;
+		var startY = thisY - 5;
+		while(startY <= thisY)
+		{
+			var finY = ""+startY+"-"+(++startY);
+			$("#finyear").append(
+				$('<option>', {
+					value:finY,
+					text:finY
+				}));
+		}
+		$("#finyear").val("<?php echo htmlentities($res_job->fin_year);?>")
+	});
+
+	$(document).ready(function() {
+		$("#aafsdate").datepicker();
+	});
+	$(document).ready(function() {
+		$("#ftrdate").datepicker();
+	});
+	$(document).ready(function() {
+		$("#fntrdate").datepicker();
+	});
+	$(document).ready(function() {
+		$("#ucdate").datepicker();
 	});
 	</script>
 </form>

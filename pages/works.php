@@ -4,6 +4,7 @@ if(!empty($_POST["d"]) && !empty($_POST["c"]))
 {
     $dist=$_POST['d'];
     $cat=strtolower($_POST['c']);
+    //$est=$_POST[e];
     switch ($cat) {
         case "cci":
             $table = "cci_details";
@@ -24,13 +25,14 @@ if(!empty($_POST["d"]) && !empty($_POST["c"]))
     $stmt = $DB_con->prepare("SELECT * FROM ".$table." WHERE district=:district");
     $stmt->bindValue(':district', $dist, PDO::PARAM_STR);
     $chk = $stmt->execute();
+
 ?>
-<option selected="selected">SELECT</option>
+<option value="" <?php if($_POST['e']) echo "selected" ?>>SELECT</option>
 <?php
     while($row=$stmt->fetch(PDO::FETCH_BOTH))
     {
 ?>
-<option value="<?php echo htmlentities($row[0]); ?>"><?php echo htmlentities($row[2]); ?></option>
+<option value="<?php echo htmlentities($row[0]); ?>" <?php if($_POST["e"] == $row[2]) echo "selected" ?> ><?php echo htmlentities($row[2]); ?></option>
     <?php
     }
 }
