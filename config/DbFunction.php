@@ -142,5 +142,48 @@ class DbFunction{
 				echo "<script>alert('ERROR: Work creation failed with ".addslashes($stmt->error)."')</script>";
 		}
 	}
+	
+	function edit_work($job_id, $district, $category, $estid, $finyear, $wrkdesc, $propamnt, $dcrtfno, $deptfno, $aafsdate, 
+						$aafsamnt, $ftrdate, $ftramnt, $fntrdate, $fntramnt, $ucdate, $wrkstatus){
+			
+		$db = Database::getInstance();
+		$mysqli = $db->getConnection();
+		date_default_timezone_set('Asia/Kolkata');
+		//	echo $session;exit;
+		$query = "UPDATE est_fund_details SET est_id=?, category=?, fin_year=?, work_desc=?, prop_amnt=?, dcrt_file_no=?,
+				dept_file_no=?, aafs_date=?, aafs_amnt=?, first_trench_dt=?, first_trench_amnt=?, final_trench_dt=?, final_trench_amnt=?,
+				uc_date=?, work_status_id=? WHERE job_id=?";
+		
+		if($aafsdate == "")
+			$aafsdate = NULL;
+		else
+			$aafsdate = date('Y-m-d', strtotime($aafsdate));
+		if($ftrdate == "")
+			$ftrdate = NULL;
+		else
+			$ftrdate = date('Y-m-d', strtotime($ftrdate));
+		if($fntrdate == "")
+			$fntrdate = NULL;
+		else
+			$fntrdate = date('Y-m-d', strtotime($fntrdate));
+		if($ucdate == "")
+			$ucdate = NULL;
+		else
+			$ucdate = date('Y-m-d', strtotime($ucdate));
+
+		$stmt= $mysqli->prepare($query);
+		if(false===$stmt){
+			trigger_error("Error in query: " . mysqli_connect_error(),E_USER_ERROR);
+		} else {
+			$check = $stmt->bind_param('ssssdsssdsdsdsss', 
+				$estid, $category, $finyear, $wrkdesc, $propamnt, $dcrtfno, $deptfno, $aafsdate, 
+				$aafsamnt, $ftrdate, $ftramnt, $fntrdate, $fntramnt, $ucdate, $wrkstatus, $job_id);
+			$stmt->execute();
+			if($stmt->affected_rows > 0)
+				echo "<script>alert('Successfully Updated Work!')</script>";
+			else
+				echo "<script>alert('ERROR: Work creation failed with ".addslashes($stmt->error)."')</script>";
+		}
+	}
 }
 ?>

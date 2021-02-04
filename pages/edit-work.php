@@ -17,7 +17,7 @@ $rs_sts = $obj->get_wrkstatuses();
 
 
 if(isset($_POST['submit'])){
-	$obj->create_work($_POST['district'],$_POST['category'], $_POST['estname'], $_POST['finyear'], $_POST['wrkdesc'],
+	$obj->edit_work($_GET['jid'],$_POST['district'],$_POST['category'], $_POST['estname'], $_POST['finyear'], $_POST['wrkdesc'],
 					$_POST['propamnt'], $_POST['dcrtno'], $_POST['deptno'], $_POST['aafsdate'], $_POST['aafsamnt'], $_POST['ftrdate'],
 					$_POST['ftramnt'], $_POST['fntrdate'], $_POST['fntramnt'], $_POST['ucdate'], $_POST['wrkstatus']);
 }
@@ -32,7 +32,7 @@ if(isset($_POST['submit'])){
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Create Work</title>
+<title>Edit Work</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css"
@@ -172,7 +172,7 @@ if(isset($_POST['submit'])){
 										<label>AAFS Date: <span id="" style="font-size:11px;color:red">*</span></label>
 									</div>
 									<div class="col-lg-6">
-										<input class="form-control" name="aafsdate" id="aafsdate" value="<?php echo htmlentities($res_job->aafs_date);?>">
+										<input class="form-control" name="aafsdate" id="aafsdate" value="<?php echo ($res_job->aafs_date == NULL || $res_job->aafs_date == '') ? '' : htmlentities(date('d-m-Y', strtotime($res_job->aafs_date)));?>">
 									</div>
 								 </div>
 								<br><br>
@@ -194,7 +194,7 @@ if(isset($_POST['submit'])){
 										<label>First Trench Date: <span id="" style="font-size:11px;color:red">*</span></label>
 									</div>
 									<div class="col-lg-6">
-										<input class="form-control" name="ftrdate" id="ftrdate" value="<?php echo htmlentities($res_job->first_trench_dt);?>" >
+										<input class="form-control" name="ftrdate" id="ftrdate" value="<?php echo ($res_job->first_trench_dt==''|| $res_job->first_trench_dt==NULL) ? '' : htmlentities(date('d-m-Y', strtotime($res_job->first_trench_dt)));?>" >
 									</div>
 								 </div>								 
 								<br><br>
@@ -216,7 +216,7 @@ if(isset($_POST['submit'])){
 										<label>Final Trench Date: <span id="" style="font-size:11px;color:red">*</span></label>
 									</div>
 									<div class="col-lg-6">
-										<input class="form-control" name="fntrdate" id="fntrdate" value="<?php echo htmlentities($res_job->final_trench_dt);?>">
+										<input class="form-control" name="fntrdate" id="fntrdate" value="<?php echo ($res_job->final_trench_dt == NULL || $res_job->final_trench_dt='') ? '' : htmlentities(date('d-m-Y', strtotime($res_job->final_trench_dt)));?>">
 									</div>
 								 </div>
 								<br><br>
@@ -238,7 +238,7 @@ if(isset($_POST['submit'])){
 										<label>UC Date: <span id="" style="font-size:11px;color:red">*</span></label>
 									</div>
 									<div class="col-lg-6">
-										<input class="form-control" name="ucdate" id="ucdate" value="<?php echo htmlentities($res_job->uc_date);?>">
+										<input class="form-control" name="ucdate" id="ucdate" value="<?php echo ($res_job->uc_date == NULL || $res_job->uc_date == '') ? '' : htmlentities(date('d-m-Y', strtotime($res_job->uc_date)));?>">
 									</div>
 								 </div>
 								<br><br>
@@ -260,7 +260,7 @@ if(isset($_POST['submit'])){
 									<div class="col-lg-4">				
 									</div>
 									<div class="col-lg-6"><br><br>
-										<input type="submit" class="btn btn-primary" name="submit" value="Create Work"></button>
+										<input type="submit" class="btn btn-primary" name="submit" value="Update Work"></button>
 									</div>
 								</div>
 							</div>
