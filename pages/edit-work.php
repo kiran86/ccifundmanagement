@@ -5,9 +5,14 @@ if (!(isset( $_SESSION ['login']))) {
 }
 include('../config/DbFunction.php');
 $obj=new DbFunction();
+
 $job_id = $_GET["jid"];
 $rs_job = $obj->get_job_details($job_id);
+$res_job = $rs_job->fetch_object();
+
 $rs_dist = $obj->get_districts();
+$rs_e = $obj->get_est_details($res_job->est_id, $res_job->category);
+$res_e = $rs_e->fetch_row();
 $rs_sts = $obj->get_wrkstatuses();
 
 
@@ -65,7 +70,7 @@ if(isset($_POST['submit'])){
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="panel panel-default">
-						<div class="panel-heading">Create New Work</div>
+						<div class="panel-heading">Edit Work</div>
 						<div class="panel-body">
 							<div class="row">
 						 	<div class="col-lg-10">
@@ -74,10 +79,10 @@ if(isset($_POST['submit'])){
 					 					<label>Select District: <span id="" style="font-size:11px;color:red">*</span></label>
 									</div>
 									<div class="col-lg-6">
-										<select class="form-control" name="district" id="district" onchange="getEstList()" required >
+										<select class="form-control" name="district" id="district" required >
 											<option VALUE="">SELECT</option>
-											<?php while($res=$rs_dist->fetch_object()){?>
-                        					<option VALUE="<?php echo htmlentities($res->district);?>"><?php echo htmlentities($res->district)?></option>
+											<?php while($res=$rs_dist->fetch_object()){	?>
+                        					<option VALUE="<?php echo htmlentities($res->district);?>" <?php if($res->district == $res_e[1]) echo "selected" ?>><?php echo htmlentities($res->district)?></option>
 											<?php }?>
 										</select>
 									</div>		
@@ -257,7 +262,7 @@ if(isset($_POST['submit'])){
 									<div class="col-lg-6"><br><br>
 										<input type="submit" class="btn btn-primary" name="submit" value="Create Work"></button>
 									</div>
-								</div>		
+								</div>
 							</div>
 						</div>	
 					</div>		
@@ -283,61 +288,10 @@ if(isset($_POST['submit'])){
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 	<script>
-	function getEstList() {
-		var district = $("#district").find(":selected").text();
-		var category = $("#category").find(":selected").text();
-		if(district != "SELECT" && category != "SELECT") {
-			$("#estname").attr("disabled", false);
-			listEst(district, category);
-		}
-		else {
-			$("#estname").attr("disabled", true);
-			$("#estname").attr("required", true);
-		}
-	}
-	
-	function listEst(dist, cat) {
-		$.ajax({
-			type: "POST",
-			url: "works.php",
-			data:{d:dist, c:cat},
-			success: function(data){
-			// alert(data);
-				$("#estname").html(data);
-			}
-		});
-	}
-	$(window).load(function () {
-		var date = new Date();
-		var thisY = date.getFullYear();
-		var thisM = date.getMonth();
-		if(thisM > 3)
-			thisY++;
-		var startY = thisY - 5;
-		while(startY <= thisY)
-		{
-			var finY = ""+startY+"-"+(++startY);
-			$("#finyear").append(
-				$('<option>', {
-					value:finY,
-					text:finY
-				}));
-		}
-	});
 	$(document).ready(function() {
-		$("#aafsdate").datepicker();
-	});
-	$(document).ready(function() {
-		$("#ftrdate").datepicker();
-	});
-	$(document).ready(function() {
-		$("#fntrdate").datepicker();
-	});
-	$(document).ready(function() {
-		$("#ucdate").datepicker();
+		$("#category").val("<?php echo htmlentities($res_job->category);?>");	
 	});
 	</script>
 </form>
 </body>
-
 </html>
