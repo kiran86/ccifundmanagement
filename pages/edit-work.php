@@ -288,8 +288,22 @@ if(isset($_POST['submit'])){
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 	<script>
+	function getEstList() {
+		var district = $("#district").find(":selected").text();
+		var category = $("#category").find(":selected").text();
+		if(district != "SELECT" && category != "SELECT") {
+			$("#estname").attr("disabled", false); {
+				listEst(district, category);
+				$("#estname").attr("required", true);
+			}
+		}
+		else {
+			$("#estname").attr("disabled", true);
+		}
+	}
 	$(document).ready(function() {
-		$("#category").val("<?php echo htmlentities($res_job->category);?>");	
+		$("#category").val("<?php echo htmlentities($res_job->category);?>");
+		getEstList();
 	});
 	</script>
 </form>
