@@ -29,27 +29,51 @@
                                 </li>
                             </ul>
                         </li>
-                        <!--
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Subject<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Establishment Bodies<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="add-subject.php">Add Subject</a>
+                                    <a href="#">CCI</a>
                                 </li>
                                 <li>
-                                    <a href="view-subject.php">View</a>
+                                    <a href="#">CWC</a>
+                                </li>
+                                <li>
+                                    <a href="#">JJB</a>
+                                </li>
+                                <li>
+                                    <a href="#">DCPU</a>
+                                </li>
+                                <li>
+                                    <a href="#">Others</a>
                                 </li>
                             </ul>
                         </li>
-                   <li>
-                            <a href="register.php"><i class="fa fa-bar-chart-o fa-fw"></i>Regsiter<span class="fa arrow"></span></a>
-                  </li>     
-                   <li>
-                            <a href="session.php"><i class="fa fa-bar-chart-o fa-fw"></i>Session<span class="fa arrow"></span></a>
-                  </li>-->
-                   <li>
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Reports<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="mis-wrksts.php">District wise Job Status</a>
+                                </li>
+                                <!--
+                                <li>
+                                    <a href="view-subject.php">CWC</a>
+                                </li>
+                                <li>
+                                    <a href="view-subject.php">JJB</a>
+                                </li>
+                                <li>
+                                    <a href="view-subject.php">DCPU</a>
+                                </li>
+                                <li>
+                                    <a href="view-subject.php">Others</a>
+                                </li>
+                                -->
+                            </ul>
+                        </li>
+                        <li>
                             <a href="logout.php"><i class="fa fa-bar-chart-o fa-fw"></i>Logout<span class="fa arrow"></span></a>
-                  </li>
+                        </li>
                   </ul>      				  
                 </div>
                
