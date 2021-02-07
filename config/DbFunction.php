@@ -67,6 +67,31 @@ class DbFunction{
 		return $stmt;
 	}
 
+	function get_ests($cat) {
+		$db = Database::getInstance();
+		$mysqli = $db->getConnection();
+		switch ($cat) {
+			case "cci":
+				$table = "cci_details";
+				break;
+			case "cwc":
+				$table = "cwc_details";
+				break;
+			case "jjb":
+				$table = "jjb_details";
+				break;
+			case "dcpu":
+				$table = "dcpu_details";
+				break;
+			case "other":
+				$table = "other_est_details";
+				break;
+		}
+		$query = "SELECT * FROM " . $table . " ORDER BY district ASC";
+		$stmt= $mysqli->query($query);
+		return $stmt;
+	}
+
 	function get_work_status($wrk_id) {
 		$db = Database::getInstance();
 		$mysqli = $db->getConnection();

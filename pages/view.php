@@ -69,7 +69,7 @@ if(isset($_GET['del']))
                                             <th>Work Description</th>
 											<th>Proposed Amount</th>
 											<th>DCRT File No.</th>
-                                            <th>Dept. FIle No.</th>
+                                            <th>Dept. File No.</th>
                                             <th>AAFS Date</th>
                                             <th>AAFS Amount</th>
                                             <th>First Trench Date</th>

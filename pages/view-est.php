@@ -6,9 +6,15 @@ if (! (isset ( $_SESSION ['login'] ))) {
 }
 include('../config/DbFunction.php');
 $obj=new DbFunction();
-$rs_sts=$obj->get_wrkstatuses();
-$wrkid = array();
-$rs_dist = $obj->get_districts();
+
+if(isset($_GET['est']))
+    $table = $_GET['est'];
+
+$rs = $obj->get_ests($table);
+if(isset($_GET['del']))
+{
+    $obj->del_std(intval($_GET['del']));
+}
 ?> 
 
 <!DOCTYPE html>
@@ -27,6 +33,8 @@ $rs_dist = $obj->get_districts();
     <link href="../bower_components/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet">
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    
 </head>
 
 <body>
@@ -49,7 +57,7 @@ $rs_dist = $obj->get_districts();
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            View Work Listing
+                            View <?php echo htmlentities(strtoupper($table)); ?> Listing
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -59,38 +67,23 @@ $rs_dist = $obj->get_districts();
                                         <tr>
                                             <th>SNo</th>
 											<th>District</th>
-                                            <?php while($res=$rs_sts->fetch_object()) {
-                                                $wrkid[]= $res->work_id;
-                                            ?>
-                                            <th><?php echo htmlentities($res->work_status); ?></th>
-                                            <?php } ?>
-                                            <th>Total</th>
+											<th>Name of the Establishment</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <?php
+                                    <?php 
                                     $sn=1;
-                                    while($res=$rs_dist->fetch_object()){
+                                    while($res=$rs->fetch_array(MYSQLI_NUM)){
                                     ?>
                                     <tr class="odd gradeX">
                                         <td><?php echo $sn?></td>
-                                        <td><?php echo htmlentities(strtoupper($res->district));?></td>
-	                                    <?php
-                                        $rs_mis = $obj->mis_wrkstscount($res->district);
-                                        $res1 = $rs_mis->fetch_object();
-                                        $wrk_t = 0;
-                                        foreach($wrkid as $id) {
-                                            
-                                            if($res1!=NULL && $id == $res1->work_status_id) {
-                                        ?>
-                                        <td><?php echo htmlentities($res1->count);?></td>
-                                        <?php
-                                                $wrk_t = $wrk_t + $res1->count;
-                                                $res1 = $rs_mis->fetch_object();
-                                        } else { ?>
-                                        <td>0</td>
-                                        <?php }} ?>
-                                        <td><b><?php echo htmlentities($wrk_t) ?></td>
+                                        <td><?php echo htmlentities(strtoupper($res[1]));?></td>
+                                        <td><?php echo htmlentities(strtoupper($res[2]));?></td>
+                                        <td>&nbsp;&nbsp;<a href="edit-work.php?jid=<?//php echo htmlentities($res->job_id);?>">
+	                                    <p class="fa fa-edit"></p></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a href="view.php?del=<?//php echo htmlentities($res->job_id); ?>">
+	                                    <p class="fa fa-times-circle"></p>
+                                        </td>    
                                     </tr>    
                                     <?php $sn++;}?>   	           
                                     </tbody>

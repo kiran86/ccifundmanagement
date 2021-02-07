@@ -33,19 +33,19 @@
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Establishment Bodies<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">CCI</a>
+                                    <a href="./view-est.php?est=cci">CCI</a>
                                 </li>
                                 <li>
-                                    <a href="#">CWC</a>
+                                    <a href="./view-est.php?est=cwc">CWC</a>
                                 </li>
                                 <li>
-                                    <a href="#">JJB</a>
+                                    <a href="./view-est.php?est=jjb">JJB</a>
                                 </li>
                                 <li>
-                                    <a href="#">DCPU</a>
+                                    <a href="./view-est.php?est=dcpu">DCPU</a>
                                 </li>
                                 <li>
-                                    <a href="#">Others</a>
+                                    <a href="./view-est.php?est=other">Others</a>
                                 </li>
                             </ul>
                         </li>
