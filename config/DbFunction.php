@@ -185,5 +185,14 @@ class DbFunction{
 				echo "<script>alert('ERROR: Work creation failed with ".addslashes($stmt->error)."')</script>";
 		}
 	}
+
+	function mis_wrkstscount($dist) {
+		$db = Database::getInstance();
+		$mysqli = $db->getConnection();
+		$query = "SELECT T1.work_status_id, COUNT(T1.job_id) AS count FROM est_fund_details AS T1 JOIN (SELECT cci_id AS est_id, district FROM cci_details UNION ALL SELECT cwc_id AS est_id, district FROM cwc_details UNION ALL SELECT jjb_id AS est_id, district FROM jjb_details UNION ALL SELECT est_id AS est_id, district FROM other_est_details UNION ALL SELECT dcpu_id AS est_id, district FROM dcpu_details) AS T2 WHERE T1.est_id = T2.est_id AND T2.district = '$dist' GROUP BY T1.work_status_id ORDER BY T1.work_status_id ASC";
+		$stmt = $mysqli->query($query);
+		//echo "<script>alert('".$stmt->num_rows."')</script>";
+		return $stmt;
+	}
 }
 ?>

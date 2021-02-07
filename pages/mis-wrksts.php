@@ -27,8 +27,6 @@ $rs_dist = $obj->get_districts();
     <link href="../bower_components/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet">
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    
 </head>
 
 <body>
@@ -62,7 +60,7 @@ $rs_dist = $obj->get_districts();
                                             <th>SNo</th>
 											<th>District</th>
                                             <?php while($res=$rs_sts->fetch_object()) {
-                                                array_push($wrkid, $res->work_id);
+                                                $wrkid[]= $res->work_id;
                                             ?>
                                             <th><?php echo htmlentities($res->work_status); ?></th>
                                             <?php } ?>
@@ -70,15 +68,29 @@ $rs_dist = $obj->get_districts();
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <?php 
+                                    <?php
                                     $sn=1;
                                     while($res=$rs_dist->fetch_object()){
                                     ?>
                                     <tr class="odd gradeX">
                                         <td><?php echo $sn?></td>
                                         <td><?php echo htmlentities(strtoupper($res->district));?></td>
-	                                    
-                                        
+	                                    <?php
+                                        $rs_mis = $obj->mis_wrkstscount($res->district);
+                                        $res1 = $rs_mis->fetch_object();
+                                        $wrk_t = 0;
+                                        foreach($wrkid as $id) {
+                                            
+                                            if($res1!=NULL && $id == $res1->work_status_id) {
+                                        ?>
+                                        <td><?php echo htmlentities($res1->count);?></td>
+                                        <?php
+                                                $wrk_t = $wrk_t + $res1->count;
+                                                $res1 = $rs_mis->fetch_object();
+                                        } else { ?>
+                                        <td>0</td>
+                                        <?php }} ?>
+                                        <td><?php echo htmlentities($wrk_t) ?></td>
                                     </tr>    
                                     <?php $sn++;}?>   	           
                                     </tbody>
