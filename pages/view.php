@@ -78,6 +78,7 @@ if(isset($_GET['del']))
                                             <th>Final Trench Amount</th>
                                             <th>UC Date</th>
                                             <th>Status</th>
+                                            <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>

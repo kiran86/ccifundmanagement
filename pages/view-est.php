@@ -68,6 +68,7 @@ if(isset($_GET['del']))
                                             <th>SNo</th>
 											<th>District</th>
 											<th>Name of the Establishment</th>
+                                            <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -83,7 +84,7 @@ if(isset($_GET['del']))
 	                                    <p class="fa fa-edit"></p></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <a href="view.php?del=<?//php echo htmlentities($res->job_id); ?>">
 	                                    <p class="fa fa-times-circle"></p>
-                                        </td>    
+                                        </td>
                                     </tr>    
                                     <?php $sn++;}?>   	           
                                     </tbody>
