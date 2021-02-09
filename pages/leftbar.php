@@ -55,6 +55,9 @@
                                 <li>
                                     <a href="mis-wrksts.php">District wise Job Status</a>
                                 </li>
+                                <li>
+                                    <a href="mis-wrkpndcy.php">Work Pendency Status</a>
+                                </li>
                                 <!--
                                 <li>
                                     <a href="view-subject.php">CWC</a>
