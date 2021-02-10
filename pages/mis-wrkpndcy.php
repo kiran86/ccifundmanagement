@@ -91,11 +91,11 @@ if(isset($_GET['del']))
                                         <td><?php echo htmlentities(strtoupper($res1[1]));?></td>
                                         <td><?php echo htmlentities(strtoupper($res1[2]));?></td>
 	                                    <td><?php echo htmlentities($res->work_desc);?></td>
-	                                    <td><?php echo htmlentities(strtoupper($res->prop_amnt));?></td>
-                                        <td><?php echo htmlentities(strtoupper($res->aafs_amnt));?></td>
-                                        <td><?php echo htmlentities(strtoupper($res->first_trench_amnt + $res->final_trench_amnt));?></td>
+	                                    <td>₹<?php echo htmlentities(strtoupper($res->prop_amnt));?></td>
+                                        <td>₹<?php echo htmlentities(strtoupper($res->aafs_amnt));?></td>
+                                        <td>₹<?php echo htmlentities(strtoupper($res->first_trench_amnt + $res->final_trench_amnt));?></td>
                                         <td><?php echo htmlentities(strtoupper($res2->work_status));?></td>
-                                        <td><?php echo htmlentities(date_format(date_create($res->uc_date), "d-m-Y"));?></td>
+                                        <td><?php echo htmlentities(($res->uc_date != NULL) ? date_format(date_create($res->uc_date), "d-m-Y") : "");?></td>
                                         <td><textarea class="form-control" rows="3" name="erkremarks" id="erkremarks" required></textarea></td>    
                                     </tr>    
                                     <?php $sn++;}?>   	           
