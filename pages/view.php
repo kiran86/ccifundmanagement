@@ -102,13 +102,13 @@ if(isset($_GET['del']))
 	                                    <td><?php echo htmlentities(strtoupper($res->prop_amnt));?></td>
                                         <td><?php echo htmlentities(strtoupper($res->dcrt_file_no));?></td>
                                         <td><?php echo htmlentities(strtoupper($res->dept_file_no));?></td>
-                                        <td><?php echo htmlentities(date_format(date_create($res->aafs_date), "d-m-Y"));?></td>
+                                        <td><?php echo htmlentities(($res->aafs_date != NULL) ? date_format(date_create($res->aafs_date), "d-m-Y") : "");?></td>
                                         <td><?php echo htmlentities(strtoupper($res->aafs_amnt));?></td>
-                                        <td><?php echo htmlentities(date_format(date_create($res->first_trench_dt), "d-m-Y"));?></td>
+                                        <td><?php echo htmlentities(($res->first_trench_dt != NULL) ? date_format(date_create($res->first_trench_dt), "d-m-Y") : "");?></td>
                                         <td><?php echo htmlentities(strtoupper($res->first_trench_amnt));?></td>
-                                        <td><?php echo htmlentities(date_format(date_create($res->final_trench_dt), "d-m-Y"));?></td>
+                                        <td><?php echo htmlentities(($res->final_trench_dt != NULL) ? date_format(date_create($res->final_trench_dt), "d-m-Y") : "");?></td>
                                         <td><?php echo htmlentities(strtoupper($res->final_trench_amnt));?></td>
-                                        <td><?php echo htmlentities(date_format(date_create($res->uc_date), "d-m-Y"));?></td>
+                                        <td><?php echo htmlentities(($res->uc_date != NULL) ? date_format(date_create($res->uc_date), "d-m-Y") : "");?></td>
                                         <td><?php echo htmlentities(strtoupper($res2->work_status));?></td>
                                         <td>&nbsp;&nbsp;<a href="edit-work.php?jid=<?php echo htmlentities($res->job_id);?>">
 	                                    <p class="fa fa-edit"></p></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
