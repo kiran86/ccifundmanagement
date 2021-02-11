@@ -99,11 +99,10 @@ if(isset($_GET['del']))
                                         <td><?php echo htmlentities(($res->uc_date != NULL) ? date_format(date_create($res->uc_date), "d-m-Y") : "");?></td>
                                         <td>
                                         <div class="panel panel-default">
-                                            <textarea class="form-control" rows="2" name="erkremarks" id="erkremarks" disabled></textarea>
-                                            &nbsp;&nbsp;<a href="edit-work.php?jid=<?php echo htmlentities($res->job_id);?>">
-	                                    <p class="fa fa-edit"></p></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <a href="#">
-	                                    <p class="fa fa-times-circle"></p>
+                                            <textarea class="form-control" rows="2" name="erkremarks" id="remarks_txtbx<?php echo $sn ?>" disabled></textarea>
+                                            &nbsp;<a onclick="editRemarks(<?php echo $sn ?>)"><p class="fa fa-edit"></p></a>
+                                            &nbsp;<a onclick="updateRemarks(<?php echo $sn ?>)"><p class="fa fa-check"></p>
+                                            &nbsp;<a onclick="cancelRemarks(<?php echo $sn ?>)"><p class="fa fa-times-circle"></p>
                                         </div>
                                         </td>
                                     </tr>    
@@ -143,11 +142,30 @@ if(isset($_GET['del']))
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
+    var txtRemarks = "";
     $(document).ready(function() {
         $('#dataTables-example').DataTable({
                 responsive: true
         });
     });
+
+    function editRemarks(n) {
+        var txtbx = document.getElementsByTagName("textarea");
+        txtRemarks = txtbx[n-1].value;
+        txtbx[n-1].disabled = false;
+    }
+    
+    function updateRemarks(n) {
+        var txtbx = document.getElementsByTagName("textarea");
+        txtbx[n-1].value = txtRemarks;
+        txtbx[n-1].disabled = true;
+    }
+
+    function cancelRemarks(n) {
+        var txtbx = document.getElementsByTagName("textarea");
+        txtbx[n-1].value = txtRemarks;
+        txtbx[n-1].disabled = true;
+    }
     </script>
 </body>
 </html>
