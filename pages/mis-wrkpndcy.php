@@ -5,6 +5,7 @@ if (! (isset ( $_SESSION ['login'] ))) {
 	header ( 'location:../index.php' );
 }
 include('../config/DbFunction.php');
+include('../config/utilityfunc.php');
 $obj=new DbFunction();
 $rs=$obj->show_jobs();
 
@@ -12,8 +13,6 @@ if(isset($_GET['del']))
 {
     $obj->del_std(intval($_GET['del']));
 }
-setlocale(LC_MONETARY, 'en_IN');
-//$fmt = new NumberFormatter('in_IN', NumberFormatter::CURRENCY);
 ?> 
 
 <!DOCTYPE html>
@@ -93,12 +92,20 @@ setlocale(LC_MONETARY, 'en_IN');
                                         <td><?php echo htmlentities(strtoupper($res1[1]));?></td>
                                         <td><?php echo htmlentities(strtoupper($res1[2]));?></td>
 	                                    <td><?php echo htmlentities($res->work_desc);?></td>
-	                                    <td><?php echo htmlentities(money_format('%i', $res->prop_amnt));?></td>
-                                        <td><?php echo htmlentities(strtoupper($res->aafs_amnt));?></td>
-                                        <td><?php echo htmlentities(strtoupper($res->first_trench_amnt + $res->final_trench_amnt));?></td>
+	                                    <td><?php echo htmlentities(numberToCurrency($res->prop_amnt));?></td>
+                                        <td><?php echo htmlentities(numberToCurrency($res->aafs_amnt));?></td>
+                                        <td><?php echo htmlentities(numberToCurrency($res->first_trench_amnt + $res->final_trench_amnt));?></td>
                                         <td><?php echo htmlentities(strtoupper($res2->work_status));?></td>
                                         <td><?php echo htmlentities(($res->uc_date != NULL) ? date_format(date_create($res->uc_date), "d-m-Y") : "");?></td>
-                                        <td><textarea class="form-control" rows="3" name="erkremarks" id="erkremarks" required></textarea></td>    
+                                        <td>
+                                        <div class="panel panel-default">
+                                            <textarea class="form-control" rows="2" name="erkremarks" id="erkremarks" disabled></textarea>
+                                            &nbsp;&nbsp;<a href="edit-work.php?jid=<?php echo htmlentities($res->job_id);?>">
+	                                    <p class="fa fa-edit"></p></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a href="#">
+	                                    <p class="fa fa-times-circle"></p>
+                                        </div>
+                                        </td>
                                     </tr>    
                                     <?php $sn++;}?>   	           
                                     </tbody>

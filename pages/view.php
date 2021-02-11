@@ -5,6 +5,7 @@ if (! (isset ( $_SESSION ['login'] ))) {
 	header ( 'location:../index.php' );
 }
 include('../config/DbFunction.php');
+include('../config/utilityfunc.php');
 $obj=new DbFunction();
 $rs=$obj->show_jobs();
 
@@ -99,20 +100,20 @@ if(isset($_GET['del']))
                                         <td><?php echo htmlentities(strtoupper($res1[2]));?></td>
                                         <td><?php echo htmlentities(strtoupper($res->fin_year));?></td>
 	                                    <td><?php echo htmlentities($res->work_desc);?></td>
-	                                    <td><?php echo htmlentities(strtoupper($res->prop_amnt));?></td>
+	                                    <td><?php echo htmlentities(numberToCurrency($res->prop_amnt));?></td>
                                         <td><?php echo htmlentities(strtoupper($res->dcrt_file_no));?></td>
                                         <td><?php echo htmlentities(strtoupper($res->dept_file_no));?></td>
                                         <td><?php echo htmlentities(($res->aafs_date != NULL) ? date_format(date_create($res->aafs_date), "d-m-Y") : "");?></td>
-                                        <td><?php echo htmlentities(strtoupper($res->aafs_amnt));?></td>
+                                        <td><?php echo htmlentities(numberToCurrency($res->aafs_amnt));?></td>
                                         <td><?php echo htmlentities(($res->first_trench_dt != NULL) ? date_format(date_create($res->first_trench_dt), "d-m-Y") : "");?></td>
-                                        <td><?php echo htmlentities(strtoupper($res->first_trench_amnt));?></td>
+                                        <td><?php echo htmlentities(numberToCurrency($res->first_trench_amnt));?></td>
                                         <td><?php echo htmlentities(($res->final_trench_dt != NULL) ? date_format(date_create($res->final_trench_dt), "d-m-Y") : "");?></td>
-                                        <td><?php echo htmlentities(strtoupper($res->final_trench_amnt));?></td>
+                                        <td><?php echo htmlentities(numberToCurrency($res->final_trench_amnt));?></td>
                                         <td><?php echo htmlentities(($res->uc_date != NULL) ? date_format(date_create($res->uc_date), "d-m-Y") : "");?></td>
                                         <td><?php echo htmlentities(strtoupper($res2->work_status));?></td>
                                         <td>&nbsp;&nbsp;<a href="edit-work.php?jid=<?php echo htmlentities($res->job_id);?>">
 	                                    <p class="fa fa-edit"></p></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <a href="view.php?del=<?php echo htmlentities($res->job_id); ?>">
+                                        <a href="#">
 	                                    <p class="fa fa-times-circle"></p>
                                         </td>    
                                     </tr>    
