@@ -124,6 +124,15 @@ class DbFunction{
 		return $stmt;
 	}
 
+	function get_wrkpndcyrmrks($job_id) {
+		$db = Database::getInstance();
+		$mysqli = $db->getConnection();
+		$query = "SELECT * FROM wrkpndcy_rvw WHERE work_id = '".$job_id."'";
+		//echo "<script>alert('".addslashes($query)."')</script>";
+		$stmt = $mysqli->query($query);
+		return $stmt;
+	}
+
 	function create_work($district, $category, $estid, $finyear, $wrkdesc, $propamnt, $dcrtfno, $deptfno, $aafsdate, 
 						$aafsamnt, $ftrdate, $ftramnt, $fntrdate, $fntramnt, $ucdate, $wrkstatus){
 			

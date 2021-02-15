@@ -9,10 +9,6 @@ include('../config/utilityfunc.php');
 $obj=new DbFunction();
 $rs=$obj->show_jobs();
 
-if(isset($_GET['del']))
-{
-    $obj->del_std(intval($_GET['del']));
-}
 ?> 
 
 <!DOCTYPE html>
@@ -30,9 +26,7 @@ if(isset($_GET['del']))
     <link href="../bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
     <link href="../bower_components/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet">
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
-    <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    
+    <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">    
 </head>
 
 <body>
@@ -86,6 +80,8 @@ if(isset($_GET['del']))
                                         $work_id=$res->work_status_id;
                                         $work_st = $obj->get_work_status($work_id);
                                         $res2=$work_st->fetch_object();
+                                        $wrkpnd_rem = $obj->get_wrkpndcyrmrks($res->job_id);
+                                        $res3 = $wrkpnd_rem->fetch_object();
                                     ?>
                                     <tr class="odd gradeX">
                                         <td><?php echo $sn?></td>
@@ -99,9 +95,9 @@ if(isset($_GET['del']))
                                         <td><?php echo htmlentities(($res->uc_date != NULL) ? date_format(date_create($res->uc_date), "d-m-Y") : "");?></td>
                                         <td>
                                         <div class="panel panel-default">
-                                            <textarea class="form-control" rows="2" name="erkremarks" id="remarks_txtbx<?php echo $sn ?>" disabled></textarea>
+                                            <textarea class="form-control" rows="2" name="<?php echo $res->job_id; ?>" disabled><?php echo htmlentities($res3->remarks); ?></textarea>
                                             &nbsp;<a onclick="editRemarks(<?php echo $sn ?>)"><p class="fa fa-edit"></p></a>
-                                            &nbsp;<a onclick="updateRemarks(<?php echo $sn ?>)"><p class="fa fa-check"></p>
+                                            &nbsp;<a onclick="updateRemarks(<?php echo $sn; ?>)"><p class="fa fa-check"></p>
                                             &nbsp;<a onclick="cancelRemarks(<?php echo $sn ?>)"><p class="fa fa-times-circle"></p>
                                         </div>
                                         </td>
@@ -157,7 +153,9 @@ if(isset($_GET['del']))
     
     function updateRemarks(n) {
         var txtbx = document.getElementsByTagName("textarea");
-        txtbx[n-1].value = txtRemarks;
+        var work_id = txtbx[n-1].name;
+        alert(work_id);
+        //txtbx[n-1].value = txtRemarks;
         txtbx[n-1].disabled = true;
     }
 
