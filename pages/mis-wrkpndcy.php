@@ -58,10 +58,10 @@ $rs=$obj->show_jobs();
                                     <thead>
                                         <tr>
                                             <th>SNo</th>
-											<th>District</th>
-											<th>Name of the Establishment</th>
+                                            <th>District</th>
+                                            <th>Name of the Establishment</th>
                                             <th>Work Description</th>
-											<th>Proposed Amount</th>
+                                            <th>Proposed Amount</th>
                                             <th>AAFS Amount</th>
                                             <th>Amount Released</th>
                                             <th>Status</th>
@@ -101,7 +101,7 @@ $rs=$obj->show_jobs();
                                             &nbsp;<a onclick="cancelRemarks(<?php echo $sn ?>)"><p class="fa fa-times-circle"></p>
                                         </div>
                                         </td>
-                                    </tr>
+                                    </tr>    
                                     <?php $sn++;}?>   	           
                                     </tbody>
                                 </table>
@@ -154,15 +154,26 @@ $rs=$obj->show_jobs();
     function updateRemarks(n) {
         var txtbx = document.getElementsByTagName("textarea");
         var work_id = txtbx[n-1].name;
-        alert(work_id);
-        //txtbx[n-1].value = txtRemarks;
-        txtbx[n-1].disabled = true;
+        var remarks = txtbx[n-1].value;
+        if (txtbx[n-1].disabled != true) {
+          $.ajax({
+            type: "POST",
+            url: "remarks.php",
+            data:{id:work_id, rem:remarks},
+            success: function(data){
+              alert(data);
+            }
+          });
+          txtbx[n-1].disabled = true;
+        }
     }
 
     function cancelRemarks(n) {
         var txtbx = document.getElementsByTagName("textarea");
-        txtbx[n-1].value = txtRemarks;
-        txtbx[n-1].disabled = true;
+        if (txtbx[n-1].disabled != true) {
+          txtbx[n-1].value = txtRemarks;
+          txtbx[n-1].disabled = true;
+        }
     }
     </script>
 </body>
