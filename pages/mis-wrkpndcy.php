@@ -95,13 +95,13 @@ $rs=$obj->show_jobs();
                                         <td><?php echo htmlentities(($res->uc_date != NULL) ? date_format(date_create($res->uc_date), "d-m-Y") : "");?></td>
                                         <td>
                                         <div class="panel panel-default">
-                                            <textarea class="form-control" rows="2" name="<?php echo $res->job_id; ?>" disabled><?php echo htmlentities($res3->remarks); ?></textarea>
+                                            <textarea class="form-control" rows="2" name="<?php echo $res->job_id; ?>" disabled><?php echo (isset($res3->remarks) ? htmlentities($res3->remarks) : ""); ?></textarea>
                                             &nbsp;<a onclick="editRemarks(<?php echo $sn ?>)"><p class="fa fa-edit"></p></a>
                                             &nbsp;<a onclick="updateRemarks(<?php echo $sn; ?>)"><p class="fa fa-check"></p>
                                             &nbsp;<a onclick="cancelRemarks(<?php echo $sn ?>)"><p class="fa fa-times-circle"></p>
                                         </div>
                                         </td>
-                                    </tr>    
+                                    </tr>
                                     <?php $sn++;}?>   	           
                                     </tbody>
                                 </table>
