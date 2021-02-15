@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 4.9.7deb1
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 08, 2021 at 12:38 AM
--- Server version: 8.0.22
--- PHP Version: 8.0.1
+-- Generation Time: Feb 15, 2021 at 07:46 AM
+-- Server version: 8.0.23
+-- PHP Version: 7.4.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -115,7 +116,7 @@ INSERT INTO `cwc_details` (`cwc_id`, `district`, `cwc_name`) VALUES
 
 CREATE TABLE `dcpu_details` (
   `dcpu_id` varchar(8) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `district` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
+  `district` varchar(25) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `dcpu_name` varchar(25) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -303,9 +304,9 @@ INSERT INTO `est_fund_details` (`job_id`, `est_id`, `category`, `fin_year`, `wor
 --
 
 CREATE TABLE `jjb_details` (
-  `jjb_id` varchar(6) COLLATE utf8_unicode_ci NOT NULL,
-  `district` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
-  `jjb_name` varchar(25) COLLATE utf8_unicode_ci NOT NULL
+  `jjb_id` varchar(6) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `district` varchar(25) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `jjb_name` varchar(25) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -344,8 +345,8 @@ INSERT INTO `jjb_details` (`jjb_id`, `district`, `jjb_name`) VALUES
 --
 
 CREATE TABLE `other_est_details` (
-  `est_id` varchar(8) COLLATE utf8_unicode_ci NOT NULL,
-  `district` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
+  `est_id` varchar(8) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `district` varchar(25) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `est_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -364,8 +365,8 @@ INSERT INTO `other_est_details` (`est_id`, `district`, `est_name`) VALUES
 
 CREATE TABLE `tbl_login` (
   `id` int NOT NULL,
-  `loginid` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
-  `password` mediumtext COLLATE utf8_unicode_ci NOT NULL
+  `loginid` varchar(250) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `password` mediumtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -398,6 +399,24 @@ INSERT INTO `work_status` (`work_id`, `work_status`) VALUES
 ('work_5', 'Final Trench of Fund Released'),
 ('work_6', 'Work Completed and UC Submitted'),
 ('work_7', 'Error in Job Proposal and Cancelled');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wrkpndcy_rvw`
+--
+
+CREATE TABLE `wrkpndcy_rvw` (
+  `work_id` varchar(25) NOT NULL,
+  `remarks` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `wrkpndcy_rvw`
+--
+
+INSERT INTO `wrkpndcy_rvw` (`work_id`, `remarks`) VALUES
+('job_1', 'Test');
 
 --
 -- Indexes for dumped tables
@@ -449,6 +468,12 @@ ALTER TABLE `tbl_login`
 -- Indexes for table `work_status`
 --
 ALTER TABLE `work_status`
+  ADD PRIMARY KEY (`work_id`);
+
+--
+-- Indexes for table `wrkpndcy_rvw`
+--
+ALTER TABLE `wrkpndcy_rvw`
   ADD PRIMARY KEY (`work_id`);
 
 --
