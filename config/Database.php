@@ -2,10 +2,11 @@
 class Database {
 	private $_connection;
 	private static $_instance; //The single instance
-	private $_host = "localhost";
-	private $_username = "root";
-	private $_password = "mastermind";
-	private $_database = "infradevlop";
+	private $_host = "sql205.epizy.com";
+	private $port = 3306;
+	private $_username = "epiz_28111343";
+	private $_password = "7wHqmGF1hbCZ";
+	private $_database = "epiz_28111343_infradevlop";
 	/*
 	Get an instance of the Database
 	@return Instance
@@ -18,7 +19,7 @@ class Database {
 	}
 	// Constructor
 	public function __construct() {
-		$this->_connection = new mysqli($this->_host, $this->_username,	$this->_password, $this->_database);
+		$this->_connection = new mysqli($this->_host, $this->_username,	$this->_password, $this->_database, $this->port);
 		// Error handling
 		if(mysqli_connect_error()) {
 			trigger_error("Failed to conencto to MySQL: " . mysqli_connect_error(), E_USER_ERROR);
